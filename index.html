@@ -1,183 +1,552 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>陈乐瑶的个人主页</title>
+    <meta charset="UTF-8">
+    <title>My GitHub Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(120deg, #180364, #010915);
-      color: #333;
-    }
+    <style>
+        :root {
+            --bg: #f7fbff;
+            --bg-soft: #eef7ff;
+            --card: rgba(255, 255, 255, 0.84);
+            --text: #1f2937;
+            --sub-text: #5f6f80;
+            --accent: #63b3ff;
+            --accent-2: #8be0c8;
+            --accent-3: #b7c7ff;
+            --border: rgba(255, 255, 255, 0.65);
+            --shadow: 0 10px 30px rgba(140, 170, 210, 0.16);
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 80px auto;
-      background: rgb(187, 211, 217);
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", "PingFang SC", "Hiragino Sans", "Microsoft YaHei", sans-serif;
+        }
 
-    h1 {
-      margin-top: 0;
-      font-size: 36px;
-      text-align: center;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .intro {
-      text-align: center;
-      font-size: 18px;
-      line-height: 1.8;
-      margin-bottom: 30px;
-    }
+        body {
+            background:
+                radial-gradient(circle at top left, #dff3ff 0%, transparent 34%),
+                radial-gradient(circle at top right, #e5fff5 0%, transparent 28%),
+                radial-gradient(circle at bottom left, #eef0ff 0%, transparent 24%),
+                linear-gradient(135deg, #f7fbff 0%, #eef7ff 50%, #fcffff 100%);
+            color: var(--text);
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-    .tags {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+        .bg-bubble {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(12px);
+            z-index: -1;
+            opacity: 0.55;
+            animation: float 8s ease-in-out infinite;
+        }
 
-    .tag {
-      display: inline-block;
-      margin: 6px;
-      padding: 6px 14px;
-      background: #7ee6b5;
-      border-radius: 20px;
-      font-size: 14px;
-    }
+        .bubble1 {
+            width: 220px;
+            height: 220px;
+            background: #cfeeff;
+            top: 60px;
+            left: -40px;
+        }
 
-    .section {
-      margin-top: 40px;
-    }
+        .bubble2 {
+            width: 180px;
+            height: 180px;
+            background: #dff8ef;
+            top: 320px;
+            right: -40px;
+            animation-delay: 1.5s;
+        }
 
-    .section h2 {
-      color: #4977eb;
-      border-left: 5px solid #4977eb;
-      padding-left: 12px;
-      margin-bottom: 20px;
-    }
+        .bubble3 {
+            width: 150px;
+            height: 150px;
+            background: #e6e9ff;
+            bottom: 80px;
+            left: 7%;
+            animation-delay: 3s;
+        }
 
-    .section p {
-      font-size: 16px;
-      line-height: 1.9;
-      margin-bottom: 15px;
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-14px); }
+        }
 
-    .section ul {
-      padding-left: 20px;
-      margin-bottom: 20px;
-    }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-    }
+        header {
+            padding: 5rem 1.2rem 2.5rem;
+        }
 
-    a {
-      color: #4977eb;
-      text-decoration: none;
-    }
+        .hero {
+            max-width: 1040px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.60);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 1s ease;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+        body.loaded .hero {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #dff3ff, #e7fff5);
+            color: #3178c6;
+            font-size: 0.92rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 12px rgba(77, 168, 255, 0.12);
+        }
+
+        header h1 {
+            font-size: clamp(2.1rem, 4vw, 3.2rem);
+            margin-bottom: 1rem;
+            color: #18334f;
+        }
+
+        header h2 {
+            font-size: 1.03rem;
+            font-weight: 400;
+            color: var(--sub-text);
+            max-width: 860px;
+            margin: 0 auto 1.8rem;
+        }
+
+        .hero-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        .hero-links a {
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, var(--accent), #8fd3ff);
+            padding: 0.82rem 1.45rem;
+            border-radius: 14px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(99, 179, 255, 0.24);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .hero-links a:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 26px rgba(99, 179, 255, 0.28);
+        }
+
+        main {
+            max-width: 1040px;
+            margin: auto;
+            padding: 1rem 1.2rem 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2b79c2;
+            margin: 2rem 0 1rem;
+            padding-left: 0.2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.3rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 1.8rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            transform: translateY(28px);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        body.loaded .card {
+            animation: fadeUp 0.9s ease forwards;
+        }
+
+        body.loaded .card:nth-child(1) { animation-delay: 0.10s; }
+        body.loaded .card:nth-child(2) { animation-delay: 0.22s; }
+        body.loaded .card:nth-child(3) { animation-delay: 0.34s; }
+        body.loaded .card:nth-child(4) { animation-delay: 0.46s; }
+        body.loaded .card:nth-child(5) { animation-delay: 0.58s; }
+        body.loaded .card:nth-child(6) { animation-delay: 0.70s; }
+        body.loaded .card:nth-child(7) { animation-delay: 0.82s; }
+        body.loaded .card:nth-child(8) { animation-delay: 0.94s; }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 36px rgba(125, 166, 201, 0.22);
+        }
+
+        .card h3 {
+            color: #2b79c2;
+            margin-bottom: 0.95rem;
+            font-size: 1.2rem;
+        }
+
+        .card h4 {
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: var(--sub-text);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--sub-text);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 0.68rem;
+            color: var(--text);
+            position: relative;
+            padding-left: 1.4rem;
+        }
+
+        ul li::before {
+            content: "✦";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .highlight {
+            color: #2b79c2;
+            font-weight: 600;
+        }
+
+        .project-card p,
+        .about-text,
+        .future-text,
+        .contact-text {
+            font-size: 0.98rem;
+        }
+
+        .gallery-wrap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        .gallery-item {
+            background: rgba(255,255,255,0.78);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(130, 160, 200, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 14px 30px rgba(130, 160, 200, 0.18);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-info {
+            padding: 0.9rem 1rem 1rem;
+        }
+
+        .gallery-info h4 {
+            color: #2b79c2;
+            margin-bottom: 0.45rem;
+            font-size: 1rem;
+        }
+
+        .gallery-info p {
+            font-size: 0.92rem;
+            color: var(--sub-text);
+            line-height: 1.7;
+        }
+
+        .wide-card {
+            grid-column: 1 / -1;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #2b79c2;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            transition: all 0.25s ease;
+        }
+
+        .contact-links a:hover {
+            background: #eef8ff;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem 2.5rem;
+            font-size: 0.92rem;
+            color: var(--sub-text);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding-top: 3.5rem;
+            }
+
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+
+            .card {
+                padding: 1.4rem;
+            }
+
+            .hero-links a {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .gallery-item img {
+                height: 220px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container">
+    <div class="bg-bubble bubble1"></div>
+    <div class="bg-bubble bubble2"></div>
+    <div class="bg-bubble bubble3"></div>
 
-    <!-- 个人介绍 -->
-    <h1>你好，我是 Minazuki-makoto 👋</h1>
+    <header>
+        <div class="hero">
+            <div class="hero-badge">Welcome to my GitHub space</div>
+            <h1>Hi, I'm an Electrical Engineering Student 🌿</h1>
+            <h2>
+                ようこそ、わたくしの GitHub へ。<br>
+                電気工学を専攻しており、この分野に強い興味を持って継続的に学んでいます。<br><br>
 
-    <div class="intro">
-      研究方向：强化学习 / 能源管理 / 电力系统<br>
-      目前关注：PPO、SAC、CEMS、HEMS
-    </div>
+                欢迎来到我的 GitHub 主页！<br>
+                这里是我记录学习、项目和一些有趣尝试的个人空间，主要分享我对算法、电力系统以及工程问题的理解，也慢慢扩展到机器学习与智能系统方向。<br><br>
 
-    <div class="tags">
-      <span class="tag">Reinforcement Learning</span>
-      <span class="tag">PPO</span>
-      <span class="tag">SAC</span>
-      <span class="tag">PyTorch</span>
-      <span class="tag">Energy Management</span>
-      <span class="tag">Power System</span>
-    </div>
+                ときどき、アルゴリズムや工学的思考について発信しています。
+            </h2>
 
-    <!-- 强化学习内容 -->
-    <div class="section">
-      <h2>强化学习（Reinforcement Learning）</h2>
+            <div class="hero-links">
+                <a href="https://github.com/" target="_blank">GitHub Profile</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
 
-      <p>
-        强化学习是我目前重点投入学习和实践的研究方向。现阶段仍处于入门与探索阶段，
-        但已经基于 <strong>PPO（Proximal Policy Optimization）</strong> 算法完成了两个初步项目，
-        分别应用于<strong>家庭能源管理系统（HEMS）</strong>与<strong>社区能源管理系统（CEMS）</strong>。
-      </p>
+    <main>
+        <h2 class="section-title">About & Profile</h2>
+        <div class="grid">
+            <section class="card">
+                <h3>🌷 About Me</h3>
+                <p class="about-text">
+                    I am currently studying Electrical Engineering and enjoy exploring problems through both
+                    mathematical thinking and engineering intuition.
+                    I like turning abstract ideas into concrete code, notes, and small experiments.
+                    My GitHub is a place where I record learning progress, project attempts, and future possibilities.
+                </p>
+            </section>
 
-      <p>在项目实现过程中，我主要关注以下几个方面：</p>
+            <section class="card">
+                <h3>🔧 Tech Stack</h3>
+                <ul>
+                    <li><span class="highlight">Programming:</span> Python</li>
+                    <li><span class="highlight">Tools:</span> Git, GitHub, VS Code, PyCharm</li>
+                    <li><span class="highlight">Fields of Interest:</span> Algorithms, Power Systems, Engineering Thinking</li>
+                    <li><span class="highlight">Currently Learning:</span> Machine Learning, Intelligent Systems</li>
+                </ul>
+            </section>
 
-      <ul>
-        <li>状态、动作与奖励函数的合理建模</li>
-        <li>PPO 中策略更新稳定性的实现与调试</li>
-        <li>电价信号、用户负荷行为与系统约束的耦合关系</li>
-      </ul>
+            <section class="card">
+                <h3>💡 Interests</h3>
+                <ul>
+                    <li>算法与工程问题建模</li>
+                    <li>电力系统与电能传输相关问题</li>
+                    <li>机器学习与传统工程方向的结合</li>
+                    <li>把学习内容整理成可复用的笔记与项目</li>
+                </ul>
+            </section>
 
-      <p>
-        尽管目前模型与实验结果仍有较大的优化空间，但这些实践让我对
-        <em>强化学习在复杂能源系统中的应用潜力</em>有了更加直观和深入的理解。
-        后续我将持续优化算法结构，并逐步完善实验结果与可视化展示。
-      </p>
+            <section class="card">
+                <h3>📘 Major Courses (90+)</h3>
+                <h4>
+                    I am proud of my achievements in these courses, and I truly enjoy learning in these areas.
+                </h4>
+                <ul>
+                    <li>电路</li>
+                    <li>模拟电子技术</li>
+                    <li>数字电子技术与微处理器基础</li>
+                    <li>电磁场与波</li>
+                    <li>信号与系统</li>
+                    <li>电机学</li>
+                    <li>发电厂电气部分</li>
+                    <li>自动控制理论</li>
+                </ul>
+            </section>
+        </div>
 
-      <p>
-        未来计划在该方向进一步深入，包括对 SAC、分布式强化学习方法以及
-        强化学习与传统优化方法相结合的探索。
-      </p>
-    </div>
+        <h2 class="section-title" id="projects">Projects & Learning</h2>
+        <div class="grid">
+            <section class="card project-card">
+                <h3>📂 Featured Repositories</h3>
+                <ul>
+                    <li><strong>learning-notes</strong> — 学习笔记与阶段性总结</li>
+                    <li><strong>practice-code</strong> — 日常代码练习与实现</li>
+                    <li><strong>projects</strong> — 小项目、实验与有趣尝试</li>
+                </ul>
+            </section>
 
-    <!-- 电力系统内容 -->
-    <div class="section">
-      <h2>电力系统（Power System）</h2>
+            <section class="card project-card">
+                <h3>🧪 Learning Style</h3>
+                <p>
+                    I prefer learning by building.
+                    When I encounter a new concept, I try to understand the theory first,
+                    then verify it through coding, examples, and repeated practice.
+                    This helps me gradually turn “understanding” into “ability”.
+                </p>
+            </section>
 
-      <p>
-        电力系统方向是我本科阶段的重要专业基础，目前系统学习过
-        <strong>电力系统稳态分析、电机学、自动控制原理</strong>等核心课程，
-        对电力系统的机理、建模和运行约束有扎实认识。
-      </p>
+            <section class="card project-card">
+                <h3>🚀 Future Direction</h3>
+                <p class="future-text">
+                    わたくしは将来の進路について真剣に考えています。<br>
+                    今後、日本への進路も視野に入れながら、<br>
+                    <span class="highlight">Machine Learning</span> と
+                    <span class="highlight">Power Transmission / Power Systems</span>
+                    の融合分野に強い関心を持っています。<br><br>
+                    新しいことを学びながら、自分の理解を少しずつ形にしていきたいと考えています。
+                </p>
+            </section>
 
-      <p>
-        学习过程中，我注意到传统电力系统分析方法在面对
-        <em>高比例新能源接入与用户侧灵活负荷</em>时的局限性，
-        因此尝试将强化学习方法引入能源管理与调度问题中。
-      </p>
+            <section class="card project-card">
+                <h3>🎯 Current Goals</h3>
+                <ul>
+                    <li>持续完善 GitHub 上的学习记录与项目展示</li>
+                    <li>逐步补充机器学习与智能系统相关知识</li>
+                    <li>把专业课程理解与代码实践结合起来</li>
+                    <li>构建更完整、更有个人风格的技术主页</li>
+                </ul>
+            </section>
+        </div>
 
-      <p>重点研究方向包括：</p>
+        <h2 class="section-title">Awards & Highlights</h2>
+        <div class="grid">
+            <section class="card">
+                <h3>🏆 Awards & Achievements</h3>
+                <ul>
+                    <li>2024 数学竞赛省级一等奖</li>
+                    <li>专业课程多门成绩 90+</li>
+                    <li>持续记录学习过程与知识总结</li>
+                    <li>对工程问题与算法实现保持长期兴趣</li>
+                </ul>
+            </section>
 
-      <ul>
-        <li>电力系统负荷建模与不确定性分析</li>
-        <li>需求响应与用户侧能量管理策略</li>
-        <li>电价机制与用户行为的交互建模</li>
-        <li>数据驱动方法在电力系统优化中的应用</li>
-      </ul>
+            <section class="card">
+                <h3>✨ Personal Highlights</h3>
+                <ul>
+                    <li>喜欢把零散知识整理成结构化笔记</li>
+                    <li>关注理论与实践之间的联系</li>
+                    <li>愿意长期投入在感兴趣的方向中</li>
+                    <li>希望未来在学术与工程之间找到结合点</li>
+                </ul>
+            </section>
+        </div>
 
-      <p>
-        后续计划在夯实电力系统理论基础的同时，进一步探索
-        <strong>强化学习与传统优化方法（如模型预测控制、数学规划）</strong>
-        的结合，以提升算法在实际电力系统场景中的可解释性与可行性。
-      </p>
-    </div>
 
-    <!-- 页脚 -->
+        <h2 class="section-title">Contact</h2>
+        <div class="grid">
+            <section class="card" id="contact">
+                <h3>📫 Contact</h3>
+                <p class="contact-text">
+                    If you would like to communicate, exchange ideas, or simply say hello,
+                    feel free to reach out through the platforms below.
+                </p>
+                <div class="contact-links">
+                    <a href="https://github.com/" target="_blank">GitHub</a>
+                    <a href="mailto:your-email@example.com">Email</a>
+                    <a href="#">Blog</a>
+                    <a href="#">More</a>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3>🌼 A Small Note</h3>
+                <p>
+                    This page is still growing, just like my learning journey.
+                    I hope it can become a gentle and honest record of what I have learned,
+                    what I am exploring now, and what I want to build in the future.
+                </p>
+            </section>
+        </div>
+    </main>
+
     <footer>
-      GitHub：
-      <a href="https://github.com/minazuki-makoto" target="_blank">
-        minazuki-makoto
-      </a>
+        © 2026 | Built with curiosity, patience, and a little bit of softness ✨
     </footer>
 
-  </div>
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
 </body>
 </html>
